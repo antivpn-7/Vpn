@@ -32,7 +32,9 @@
 
 #announce:Если не работает Обновляйте подписку 🔄 Новые конфиги появляются регулярно!💡
 
-vless://e810f663-5ceb-4262-98c3-6157058afe58@nl-3.bexum.fun:443?flow=xtls-rprx-vision&type=tcp&headerType=none&security=tls&sni=nl-3.bexum.fun&fp=chrome&allowInsecure=0#%F0%9F%87%B5%F0%9F%87%B0WhatsApp
+vless://e810f663-5ceb-4262-98c3-6157058afe58@nl-3.bexum.fun:443?security=tls&encryption=none&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=nl-3.bexum.fun#🇵🇰 WhatsApp 1
+vless://e810f663-5ceb-4262-98c3-6157058afe58@bero-2.bexum.fun:9443?security=tls&encryption=none&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=bero-2.bexum.fun#🇵🇰 WhatsApp 2
+vless://e810f663-5ceb-4262-98c3-6157058afe58@bero-3.bexum.fun:9443?security=tls&encryption=none&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=bero-3.bexum.fun#🇵🇰 WhatsApp 3
 
 vless://8ae7b082-8ada-4352-a66e-c0ab7e48d3ed@217.18.62.163:443?flow=xtls-rprx-vision&type=tcp&headerType=none&security=reality&fp=random&sni=m.vk.ru&pbk=3JLrOA21KOD2Pd6B6YifuJaZkzH8qL9okJh8cvX7R0M&sid=8ac77e6b777376c8&spx=/#%F0%9F%87%B7%F0%9F%87%BA%D0%90%D0%BD%D1%82%D0%B8%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%B0%20%D0%B4%D0%BB%D1%8F%20YouTube%201
 
