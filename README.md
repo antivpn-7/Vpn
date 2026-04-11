@@ -12,7 +12,7 @@
 
 #profile-notice: ━━━━━━━━━━━━━━━\n  \n━━━━━━━━━━━━━━━\n🛡 Статус: Активен\n🚀 Трафик: Безлимитный\n⚡ Скорость: Максимальная\n━━━━━━━━━━━━━━━
 
-#profile-icon: https://share.google/Kl64QMcBQApgnH6aJ
+#profile-icon: https://cdn-icons-png.flaticon.com/512/1356/1356479.png
 
 #profile-test-url: http://cp.cloudflare.com/generate_204
 
