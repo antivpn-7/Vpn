@@ -4,10 +4,9 @@
 
 #profile-subscription-url: https://raw.githubusercontent.com/antivpn-7/Vpn/main/README.md
 
-#support-url:Wa.me/+79659571323
+#support-url:https://wa.me/79659571323
 
-#profile-web-page-url:Wa.me/+79659571323
-
+#profile-web-page-url:https://wa.me/79659571323
 
 #profile-notice: ━━━━━━━━━━━━━━━\n  \n━━━━━━━━━━━━━━━\n🛡 Статус: Активен\n🚀 Трафик: Безлимитный\n⚡ Скорость: Максимальная\n━━━━━━━━━━━━━━━
 
