@@ -8,7 +8,7 @@
 
 #profile-web-page-url:https://wa.me/79659571323
 
-#subscription-userinfo: upload=; download=19; total=; expire=999999999
+#subscription-userinfo: upload=; download=1; total=; expire=999999999
 
 #profile-notice: ━━━━━━━━━━━━━━━\n  \n━━━━━━━━━━━━━━━\n🛡 Статус: Активен\n🚀 Трафик: Безлимитный\n⚡ Скорость: Максимальная\n━━━━━━━━━━━━━━━
 
