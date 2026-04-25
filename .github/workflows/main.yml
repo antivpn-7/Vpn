@@ -1,4 +1,4 @@
-Name:Обход Блокировок Smart Sync 222 TOTAL CLEAN
+Name: Anti-Zaglushka Smart Sync 222 TOTAL CLEAN
 
 on:
   schedule:
@@ -27,7 +27,7 @@ jobs:
 
           # 2. Сохраняем твои VIP (те, что без значка № и без фразы "Обход Блокировок")
           touch README.md
-          grep "://" README.md | grep -v "№" | grep -v "Обход Блокировок" > my_own_keys.txt || touch my_own_keys.txt
+          grep "://" README.md | grep -v "№" | grep -v "Антизаглушка" > my_own_keys.txt || touch my_own_keys.txt
           
           # Берем список текущих URL из источников (чтобы не дублировать)
           grep "ОБХОД БЛОКИРОВКИ" README.md | cut -d'#' -f1 > existing_urls.txt
@@ -46,7 +46,7 @@ jobs:
                 PORT=$(echo "$CLEAN_URL" | sed -e 's/.*://' -e 's/[?#\/].*//')
                 if timeout 1.2s bash -c "true &>/dev/null > /dev/tcp/$HOST/$PORT" 2>/dev/null; then
                   RANDOM_FLAG=${FLAGS[$RANDOM % ${#FLAGS[@]}]}
-                  echo "${CLEAN_URL}#${RANDOM_FLAG} Обход Блокировок🚀" >> new_keys.txt
+                  echo "${CLEAN_URL}#${RANDOM_FLAG} Обход Блокировок 🚀" >> new_keys.txt
                   NEW_ADDED=$((NEW_ADDED + 1))
                   echo "$CLEAN_URL" >> existing_urls.txt
                 fi
@@ -91,7 +91,7 @@ jobs:
 
           # 7. Отчет в Telegram
           TOTAL_FINAL=$(( $(wc -l < my_own_keys.txt) + $(wc -l < cleaned_source_keys.txt) ))
-          MSG="🚀 *Обычный впн*%0A%0A✅ Добавлено новых: *$NEW_ADDED*%0A🧹 Очищено старых: *$REMOVED*%0A📊 Всего в списке: *$TOTAL_FINAL*%0A🕒 Время: $(date +'%H:%M')"
+          MSG="🚀 *ВПН*%0A%0A✅ Добавлено новых: *$NEW_ADDED*%0A🧹 Очищено старых: *$REMOVED*%0A📊 Всего в списке: *$TOTAL_FINAL*%0A🕒 Время: $(date +'%H:%M')"
           
           curl -s -X POST "https://api.telegram.org/bot$TG_TOKEN/sendMessage" \
             -d "chat_id=$TG_CHAT_ID" \
