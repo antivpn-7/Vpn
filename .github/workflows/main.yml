@@ -1,4 +1,4 @@
-Name: Anti-Zaglushka Smart Sync 222 TOTAL CLEAN
+name: Anti-Zaglushka Smart Sync 222 TOTAL CLEAN
 
 on:
   schedule:
@@ -18,21 +18,20 @@ jobs:
           TG_TOKEN: ${{ secrets.TG_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
         run: |
-          # 1. Настройки
+          # 1. Settings
           SOURCES=(
             "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS_mobile.txt"
           )
           FLAGS=("🇺🇸" "🇩🇪" "🇫🇮" "🇵🇱" "🇳🇱" "🇬🇧" "🇫🇷" "🇰🇿" "🇹🇷" "🇸🇪" "🇦🇹" "🇨🇿")
           LIMIT=222
 
-          # 2. Сохраняем твои VIP (те, что без значка № и без фразы "Антизаглушка")
+          # 2. Save VIP keys
           touch README.md
           grep "://" README.md | grep -v "№" | grep -v "Антизаглушка" > my_own_keys.txt || touch my_own_keys.txt
           
-          # Берем список текущих URL из источников (чтобы не дублировать)
-          grep "ОБХОД БЛОКИРОВКИ" README.md | cut -d'#' -f1 > existing_urls.txt
+          grep "Антизаглушка" README.md | cut -d'#' -f1 > existing_urls.txt || touch existing_urls.txt
 
-          # 3. Сбор и проверка НОВЫХ ключей
+          # 3. Collect new keys
           > new_keys.txt
           NEW_ADDED=0
           for url in "${SOURCES[@]}"; do
@@ -46,7 +45,7 @@ jobs:
                 PORT=$(echo "$CLEAN_URL" | sed -e 's/.*://' -e 's/[?#\/].*//')
                 if timeout 1.2s bash -c "true &>/dev/null > /dev/tcp/$HOST/$PORT" 2>/dev/null; then
                   RANDOM_FLAG=${FLAGS[$RANDOM % ${#FLAGS[@]}]}
-                  echo "${CLEAN_URL}#${RANDOM_FLAG} ОБХОД БЛОКИРОВКИ 🚀" >> new_keys.txt
+                  echo "${CLEAN_URL}#${RANDOM_FLAG} обход блокировок 🚀" >> new_keys.txt
                   NEW_ADDED=$((NEW_ADDED + 1))
                   echo "$CLEAN_URL" >> existing_urls.txt
                 fi
@@ -54,11 +53,11 @@ jobs:
             done < raw_temp.txt
           done
 
-          # 4. Формируем список серверов из источников
-          grep "ОБХОД БЛОКИРОВКИ" README.md > current_source_keys.txt || touch current_source_keys.txt
+          # 4. Merge
+          grep "Антизаглушка" README.md > current_source_keys.txt || touch current_source_keys.txt
           cat new_keys.txt >> current_source_keys.txt
           
-          # 5. Очистка до лимита
+          # 5. Clean to limit
           TOTAL_BEFORE=$(wc -l < current_source_keys.txt)
           REMOVED=0
           if [ "$TOTAL_BEFORE" -gt "$LIMIT" ]; then
@@ -68,20 +67,18 @@ jobs:
              cp current_source_keys.txt cleaned_source_keys.txt
           fi
 
-          # 6. ПОЛНАЯ ПЕРЕЗАПИСЬ README.md (удаляем всё старое)
+          # 6. Rewrite README.md
           TRAFFIC_LINE=$(grep "#subscription-userinfo" README.md | head -n 1 || echo "#subscription-userinfo: upload=0; download=0; total=1125899906842624; expire=3803572800")
           echo "$TRAFFIC_LINE" > README.md
-          echo "#profile-title: ОБХОД БЛОКИРОВОК" >> README.md
+          echo "#profile-title: Обход Блокировок" >> README.md
           echo "#profile-update-interval: 1" >> README.md
           echo "#subscription-update-interval: 1" >> README.md
           echo "#announce: Если VPN не работает нажмите 🔄 , после ⏱️ и выберите сервер с наименьшим показателем ms!" >> README.md
           echo "happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN" >> README.md
           echo "" >> README.md
           
-          # Сначала вставляем твои VIP (Основной, Запасной и т.д.)
           cat my_own_keys.txt >> README.md
           
-          # Затем вставляем 222 сервера с чистой нумерацией
           IDX=1
           while IFS= read -r line; do
              CLEAN_LINE=$(echo "$line" | sed 's/ №[0-9]*//g')
@@ -89,7 +86,7 @@ jobs:
              IDX=$((IDX + 1))
           done < cleaned_source_keys.txt
 
-          # 7. Отчет в Telegram
+          # 7. Telegram report
           TOTAL_FINAL=$(( $(wc -l < my_own_keys.txt) + $(wc -l < cleaned_source_keys.txt) ))
           MSG="🚀 *АНТИЗАГЛУШКА*%0A%0A✅ Добавлено новых: *$NEW_ADDED*%0A🧹 Очищено старых: *$REMOVED*%0A📊 Всего в списке: *$TOTAL_FINAL*%0A🕒 Время: $(date +'%H:%M')"
           
