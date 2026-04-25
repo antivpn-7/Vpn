@@ -1,4 +1,4 @@
-name: Sync Continuous Numbering with Black Vless Source
+name: Obkhod Blokirovok Single Source Sync
 
 on:
   schedule:
@@ -8,10 +8,15 @@ on:
 jobs:
   check-and-sync:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v3
 
-      - name: Fetch, Check and Style Keys
+      - name: Fetch, Ping and Notify
+        env:
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
         run: |
           # 1. Твой новый источник
           SOURCES=(
@@ -20,19 +25,17 @@ jobs:
 
           FLAGS=("🇺🇸" "🇩🇪" "🇫🇮" "🇵🇱" "🇳🇱" "🇬🇧" "🇫🇷" "🇰🇿" "🇹🇷" "🇸🇪" "🇦🇹" "🇨🇿")
 
-          # 2. Сохраняем твои личные ключи (те, где нет ракеты 🚀)
+          # 2. Сохраняем твои VIP серверы
           touch README.md
           grep "://" README.md | grep -v "🚀" > my_own_keys.txt || touch my_own_keys.txt
-          
-          # Считаем количество твоих личных серверов для продолжения нумерации
           MY_COUNT=$(grep -c "://" my_own_keys.txt || echo 0)
           COUNT=$((MY_COUNT + 1))
           
-          # Собираем существующие URL для проверки на дубли
           cut -d'#' -f1 my_own_keys.txt > existing_urls.txt
 
-          # 3. Качаем и проверяем новые ключи
+          # 3. Пингуем новые ключи
           > alive_keys.txt
+          NEW_ADDED=0
           for url in "${SOURCES[@]}"; do
             curl -L -s "$url" -o temp.txt
             if ! grep -q "://" temp.txt; then
@@ -44,47 +47,48 @@ jobs:
             while IFS= read -r line; do
               if [[ $line =~ ^(vless|vmess|trojan|ss):// ]]; then
                 CLEAN_URL=$(echo "$line" | cut -d'#' -f1)
-                HOST=$(echo "$CLEAN_URL" | sed -e 's/.*@//' -e 's/:.*//' -e 's/\/.*//')
-                PORT=$(echo "$CLEAN_URL" | sed -e 's/.*://' -e 's/[?#\/].*//')
-                
                 if ! grep -q "$CLEAN_URL" existing_urls.txt; then
-                  # Проверка порта
-                  if timeout 1s bash -c "true &>/dev/null > /dev/tcp/$HOST/$PORT" 2>/dev/null; then
+                  HOST=$(echo "$CLEAN_URL" | sed -e 's/.*@//' -e 's/:.*//' -e 's/\/.*//')
+                  PORT=$(echo "$CLEAN_URL" | sed -e 's/.*://' -e 's/[?#\/].*//')
+                  
+                  if timeout 1.5s bash -c "true &>/dev/null > /dev/tcp/$HOST/$PORT" 2>/dev/null; then
                     RANDOM_FLAG=${FLAGS[$RANDOM % ${#FLAGS[@]}]}
                     echo "${CLEAN_URL}#${RANDOM_FLAG} ОБХОД БЛОКИРОВКИ 🚀 №$COUNT" >> alive_keys.txt
-                    echo "$CLEAN_URL" >> existing_urls.txt
                     COUNT=$((COUNT + 1))
+                    NEW_ADDED=$((NEW_ADDED + 1))
+                    echo "$CLEAN_URL" >> existing_urls.txt
                   fi
                 fi
               fi
             done < raw_temp.txt
           done
 
-          # 4. Сборка итогового файла
-          TRAFFIC_LINE=$(grep "#subscription-userinfo" README.md || echo "#subscription-userinfo: upload=0; download=0; total=1125899906842624; expire=3803572800")
+          # 4. Сборка файла
+          TRAFFIC_LINE=$(grep "#subscription-userinfo" README.md | head -n 1 || echo "#subscription-userinfo: upload=0; download=0; total=1125899906842624; expire=3803572800")
+          echo "$TRAFFIC_LINE" > README.md
+          echo "#profile-title: Обход Блокировок" >> README.md
+          echo "#profile-update-interval: 1" >> README.md
+          echo "#subscription-update-interval: 1" >> README.md
+          echo "#announce:Если VPN не работает нажмите 🔄 , после ⏱️ и выберите сервер с наименьшим показателем ms!" >> README.md
+          echo "happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN" >> README.md
+          echo "" >> README.md
+          cat my_own_keys.txt >> README.md
+          cat alive_keys.txt >> README.md
+
+          # 5. Отправка отчета в Telegram с твоим текстом
+          TOTAL=$((COUNT - 1))
+          MSG="🚀 *ОБХОД БЛОКИРОВОК*%0A%0A✅ Добавлено новых: *$NEW_ADDED*%0A📊 Всего серверов: *$TOTAL*%0A🕒 Время: $(date +'%H:%M')"
           
-          echo "$TRAFFIC_LINE" > new_readme.md
-          echo "#profile-title: ОБХОД БЛОКИРОВОК" >> new_readme.md
-          # Параметры для отображения "Автообновление - 1 ч."
-          echo "#profile-update-interval: 1" >> new_readme.md
-          echo "#subscription-update-interval: 1" >> new_readme.md
-          echo "#announce:Если VPN не работает нажмите 🔄 , после ⏱️ и выберите сервер с наименьшим показателем ms!" >> new_readme.md
-          echo "happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN" >> new_readme.md
-          echo "" >> new_readme.md
-          
-          # Твои ключи в начало
-          cat my_own_keys.txt >> new_readme.md
-          
-          # Проверенные ключи из источника следом
-          cat alive_keys.txt >> new_readme.md
-          
-          mv new_readme.md README.md
+          curl -s -X POST "https://api.telegram.org/bot$TG_TOKEN/sendMessage" \
+            -d "chat_id=$TG_CHAT_ID" \
+            -d "parse_mode=Markdown" \
+            -d "text=$MSG"
 
       - name: Commit and Push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "Github Action"
           git add README.md
-          git commit -m "Update: source changed to black vless, auto-update interval set" || exit 0
-          git push origin main --force
+          git commit -m "Update: Single black source + TG notify text change" || exit 0
+          git push origin main
           
