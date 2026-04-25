@@ -1,0 +1,87 @@
+name: Sync from Black Vless Source
+
+on:
+  schedule:
+    - cron: "0 */1 * * *" 
+  workflow_dispatch:
+
+jobs:
+  check-and-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Fetch, Check and Style Keys
+        run: |
+          # 1. Твой новый источник
+          SOURCES=(
+            "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS_mobile.txt"
+          )
+
+          FLAGS=("🇺🇸" "🇩🇪" "🇫🇮" "🇵🇱" "🇳🇱" "🇬🇧" "🇫🇷" "🇰🇿" "🇹🇷" "🇸🇪" "🇦🇹" "🇨🇿")
+
+          # 2. Сохраняем твои личные ключи (те, где нет ракеты 🚀)
+          touch README.md
+          grep "://" README.md | grep -v "🚀" > my_own_keys.txt || touch my_own_keys.txt
+          
+          # Считаем количество твоих личных серверов для продолжения нумерации
+          MY_COUNT=$(grep -c "://" my_own_keys.txt || echo 0)
+          COUNT=$((MY_COUNT + 1))
+          
+          # Собираем существующие URL для проверки на дубли
+          cut -d'#' -f1 my_own_keys.txt > existing_urls.txt
+
+          # 3. Качаем и проверяем новые ключи
+          > alive_keys.txt
+          for url in "${SOURCES[@]}"; do
+            curl -L -s "$url" -o temp.txt
+            if ! grep -q "://" temp.txt; then
+              base64 -d temp.txt > raw_temp.txt 2>/dev/null || cp temp.txt raw_temp.txt
+            else
+              cp temp.txt raw_temp.txt
+            fi
+
+            while IFS= read -r line; do
+              if [[ $line =~ ^(vless|vmess|trojan|ss):// ]]; then
+                CLEAN_URL=$(echo "$line" | cut -d'#' -f1)
+                HOST=$(echo "$CLEAN_URL" | sed -e 's/.*@//' -e 's/:.*//' -e 's/\/.*//')
+                PORT=$(echo "$CLEAN_URL" | sed -e 's/.*://' -e 's/[?#\/].*//')
+                
+                if ! grep -q "$CLEAN_URL" existing_urls.txt; then
+                  # Проверка доступности порта (1 секунда)
+                  if timeout 1s bash -c "true &>/dev/null > /dev/tcp/$HOST/$PORT" 2>/dev/null; then
+                    RANDOM_FLAG=${FLAGS[$RANDOM % ${#FLAGS[@]}]}
+                    echo "${CLEAN_URL}#${RANDOM_FLAG} ОБХОД БЛОКИРОВКИ 🚀 №$COUNT" >> alive_keys.txt
+                    echo "$CLEAN_URL" >> existing_urls.txt
+                    COUNT=$((COUNT + 1))
+                  fi
+                fi
+              fi
+            done < raw_temp.txt
+          done
+
+          # 4. Сборка итогового файла
+          TRAFFIC_LINE=$(grep "#subscription-userinfo" README.md || echo "#subscription-userinfo: upload=0; download=0; total=1125899906842624; expire=3803572800")
+          
+          echo "$TRAFFIC_LINE" > new_readme.md
+          echo "#profile-title: Обход Блокировок" >> new_readme.md
+          echo "#announce:Если VPN не работает нажмите 🔄 , после ⏱️ и выберите сервер с наименьшим показателем ms!" >> new_readme.md
+          echo "happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN" >> new_readme.md
+          echo "" >> new_readme.md
+          
+          # Сначала твои личные сервера
+          cat my_own_keys.txt >> new_readme.md
+          
+          # Потом новые из Black Vless источника
+          cat alive_keys.txt >> new_readme.md
+          
+          mv new_readme.md README.md
+
+      - name: Commit and Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Github Action"
+          git add README.md
+          git commit -m "Update: black vless source with continuous numbering" || exit 0
+          git push origin main --force
+          
