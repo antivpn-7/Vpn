@@ -1,4 +1,4 @@
-Name:Obxod blokirovok
+Name: Anti-Zaglushka Smart Sync 222 TOTAL CLEAN
 
 on:
   schedule:
@@ -25,7 +25,7 @@ jobs:
           FLAGS=("🇺🇸" "🇩🇪" "🇫🇮" "🇵🇱" "🇳🇱" "🇬🇧" "🇫🇷" "🇰🇿" "🇹🇷" "🇸🇪" "🇦🇹" "🇨🇿")
           LIMIT=222
 
-          # 2. Сохраняем твои VIP (те, что без значка № и без фразы "Обход Блокировок")
+          # 2. Сохраняем твои VIP (те, что без значка № и без фразы "Антизаглушка")
           touch README.md
           grep "://" README.md | grep -v "№" | grep -v "Антизаглушка" > my_own_keys.txt || touch my_own_keys.txt
           
@@ -46,7 +46,7 @@ jobs:
                 PORT=$(echo "$CLEAN_URL" | sed -e 's/.*://' -e 's/[?#\/].*//')
                 if timeout 1.2s bash -c "true &>/dev/null > /dev/tcp/$HOST/$PORT" 2>/dev/null; then
                   RANDOM_FLAG=${FLAGS[$RANDOM % ${#FLAGS[@]}]}
-                  echo "${CLEAN_URL}#${RANDOM_FLAG} Обход Блокировок 🚀" >> new_keys.txt
+                  echo "${CLEAN_URL}#${RANDOM_FLAG} ОБХОД БЛОКИРОВКИ 🚀" >> new_keys.txt
                   NEW_ADDED=$((NEW_ADDED + 1))
                   echo "$CLEAN_URL" >> existing_urls.txt
                 fi
@@ -71,7 +71,7 @@ jobs:
           # 6. ПОЛНАЯ ПЕРЕЗАПИСЬ README.md (удаляем всё старое)
           TRAFFIC_LINE=$(grep "#subscription-userinfo" README.md | head -n 1 || echo "#subscription-userinfo: upload=0; download=0; total=1125899906842624; expire=3803572800")
           echo "$TRAFFIC_LINE" > README.md
-          echo "#profile-title: АНТИЗАГЛУШКА " >> README.md
+          echo "#profile-title: ОБХОД БЛОКИРОВОК" >> README.md
           echo "#profile-update-interval: 1" >> README.md
           echo "#subscription-update-interval: 1" >> README.md
           echo "#announce: Если VPN не работает нажмите 🔄 , после ⏱️ и выберите сервер с наименьшим показателем ms!" >> README.md
@@ -91,7 +91,7 @@ jobs:
 
           # 7. Отчет в Telegram
           TOTAL_FINAL=$(( $(wc -l < my_own_keys.txt) + $(wc -l < cleaned_source_keys.txt) ))
-          MSG="🚀 *ВПН*%0A%0A✅ Добавлено новых: *$NEW_ADDED*%0A🧹 Очищено старых: *$REMOVED*%0A📊 Всего в списке: *$TOTAL_FINAL*%0A🕒 Время: $(date +'%H:%M')"
+          MSG="🚀 *АНТИЗАГЛУШКА*%0A%0A✅ Добавлено новых: *$NEW_ADDED*%0A🧹 Очищено старых: *$REMOVED*%0A📊 Всего в списке: *$TOTAL_FINAL*%0A🕒 Время: $(date +'%H:%M')"
           
           curl -s -X POST "https://api.telegram.org/bot$TG_TOKEN/sendMessage" \
             -d "chat_id=$TG_CHAT_ID" \
