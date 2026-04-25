@@ -2,9 +2,10 @@
 #profile-title: ОБХОД БЛОКИРОВОК
 #profile-update-interval: 1
 #subscription-update-interval: 1
-#announce:Обновлено: 08:45 | База: 222 серверов
+#announce:Обновлено: 09:38 | База: 222 серверов
 happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
 
+happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
 happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
 happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
 happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
@@ -237,3 +238,4 @@ trojan://162534@156.246.94.155:8443?security=tls&sni=cchh2.pages.dev&type=ws&hos
 trojan://162534@217.60.248.94:8443?security=tls&sni=cchh2.pages.dev&insecure=1&allowInsecure=1&type=ws&host=cchh2.pages.dev&path=%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2FWangCai2%F0%9F%87%A8%F0%9F%87%B3#🇰🇿 ОБХОД БЛОКИРОВКИ 🚀 №128
 trojan://162534@217.60.38.249:8443?security=tls&sni=cchh2.pages.dev&insecure=1&allowInsecure=1&type=ws&host=cchh2.pages.dev&path=%2F%3Fed%3D2560%26https%3A%2F%2Ft.me%2FWangCai2%F0%9F%87%A8%F0%9F%87%B3#🇦🇹 ОБХОД БЛОКИРОВКИ 🚀 №129
 trojan://162534@43.165.190.11:42841?security=tls&sni=cchh2.pages.dev&type=ws&host=cchh2.pages.dev&path=/%3Fed%3D2560%26https%3A//t.me/WangCai2%F0%9F%87%A8%F0%9F%87%B3#🇫🇷 ОБХОД БЛОКИРОВКИ 🚀 №130
+vless://3ca3c7ef-1c04-4396-92a0-5bf4c528905f@s1.fastfilex.pro:8443?security=reality&sni=s1.fastfilex.pro&fp=chrome&pbk=QHkXBS2ENHV0khgY9VBYi8_9bpfqnUYDcfQN4cW5Qg0&sid=4326&type=tcp&flow=xtls-rprx-vision&packetEncoding=xudp&encryption=none#🇦🇹 ОБХОД БЛОКИРОВКИ 🚀 №131
