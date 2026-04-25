@@ -2,9 +2,10 @@
 #profile-title: ОБХОД БЛОКИРОВОК
 #profile-update-interval: 1
 #subscription-update-interval: 1
-#announce:Обновлено! База: 222 рабочих серверов. Удалено старых: 0
+#announce:Обновлено: 08:45 | База: 222 серверов
 happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
 
+happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
 happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
 happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
 happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
