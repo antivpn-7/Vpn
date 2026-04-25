@@ -1,4 +1,4 @@
-name: Obxod blocirovok Smart Sync 222
+name: Obxod blocirovok Smart Sync 222 TOTAL CLEAN
 
 on:
   schedule:
@@ -18,88 +18,78 @@ jobs:
           TG_TOKEN: ${{ secrets.TG_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
         run: |
-          # 1. Настройки проекта
+          # 1. Настройки (Источник заменен)
           SOURCES=("https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS_mobile.txt")
           FLAGS=("🇺🇸" "🇩🇪" "🇫🇮" "🇵🇱" "🇳🇱" "🇬🇧" "🇫🇷" "🇰🇿" "🇹🇷" "🇸🇪" "🇦🇹" "🇨🇿")
-          LIMIT=222 # Твой новый лимит серверов
+          LIMIT=222
 
-          # 2. Подготовка файлов
+          # 2. Сохраняем твои VIP (те, что без пометки "ОБХОД БЛОКИРОВКИ")
           touch README.md
-          # Отделяем твои VIP-ключи (без ракеты)
-          grep "://" README.md | grep -v "🚀" > my_own_keys.txt || touch my_own_keys.txt
+          grep "://" README.md | grep -v "ОБХОД БЛОКИРОВКИ" > my_own_keys.txt || touch my_own_keys.txt
           
-          # Берем текущие сервера из источников (с ракетой)
-          grep "🚀" README.md > current_source_keys.txt || touch current_source_keys.txt
-          
-          # Составляем список URL, чтобы не добавлять дубликаты
-          cut -d'#' -f1 my_own_keys.txt > existing_urls.txt
-          cut -d'#' -f1 current_source_keys.txt >> existing_urls.txt
+          # Список текущих URL из базы
+          grep "ОБХОД БЛОКИРОВКИ" README.md | cut -d'#' -f1 > existing_urls.txt
 
-          # 3. Сбор и проверка новых ключей
+          # 3. Сбор и проверка НОВЫХ ключей
           > new_keys.txt
           NEW_ADDED=0
           for url in "${SOURCES[@]}"; do
             curl -L -s "$url" -o temp.txt
-            if ! grep -q "://" temp.txt; then
-              base64 -d temp.txt > raw_temp.txt 2>/dev/null || cp temp.txt raw_temp.txt
-            else
-              cp temp.txt raw_temp.txt
-            fi
+            grep "://" temp.txt > raw_temp.txt || cp temp.txt raw_temp.txt
 
             while IFS= read -r line; do
-              if [[ $line =~ ^(vless|vmess|trojan|ss):// ]]; then
-                CLEAN_URL=$(echo "$line" | cut -d'#' -f1)
-                if ! grep -q "$CLEAN_URL" existing_urls.txt; then
-                  HOST=$(echo "$CLEAN_URL" | sed -e 's/.*@//' -e 's/:.*//' -e 's/\/.*//')
-                  PORT=$(echo "$CLEAN_URL" | sed -e 's/.*://' -e 's/[?#\/].*//')
-                  
-                  if timeout 1.5s bash -c "true &>/dev/null > /dev/tcp/$HOST/$PORT" 2>/dev/null; then
-                    RANDOM_FLAG=${FLAGS[$RANDOM % ${#FLAGS[@]}]}
-                    echo "${CLEAN_URL}#${RANDOM_FLAG} ОБХОД БЛОКИРОВКИ 🚀" >> new_keys.txt
-                    NEW_ADDED=$((NEW_ADDED + 1))
-                    echo "$CLEAN_URL" >> existing_urls.txt
-                  fi
+              CLEAN_URL=$(echo "$line" | cut -d'#' -f1)
+              if [[ $CLEAN_URL =~ ^(vless|vmess|trojan|ss):// ]] && ! grep -q "$CLEAN_URL" existing_urls.txt; then
+                HOST=$(echo "$CLEAN_URL" | sed -e 's/.*@//' -e 's/:.*//' -e 's/\/.*//')
+                PORT=$(echo "$CLEAN_URL" | sed -e 's/.*://' -e 's/[?#\/].*//')
+                if timeout 1.2s bash -c "true &>/dev/null > /dev/tcp/$HOST/$PORT" 2>/dev/null; then
+                  RANDOM_FLAG=${FLAGS[$RANDOM % ${#FLAGS[@]}]}
+                  echo "${CLEAN_URL}#${RANDOM_FLAG} ОБХОД БЛОКИРОВКИ 🚀" >> new_keys.txt
+                  NEW_ADDED=$((NEW_ADDED + 1))
+                  echo "$CLEAN_URL" >> existing_urls.txt
                 fi
               fi
             done < raw_temp.txt
           done
 
-          # 4. Умная очистка: оставляем только свежие 222 штуки
-          cat current_source_keys.txt >> new_keys.txt
-          TOTAL_SOURCE_KEYS=$(wc -l < new_keys.txt)
+          # 4. Формируем список серверов из источников
+          grep "ОБХОД БЛОКИРОВКИ" README.md > current_source_keys.txt || touch current_source_keys.txt
+          cat new_keys.txt >> current_source_keys.txt
           
+          # 5. Очистка до лимита
+          TOTAL_BEFORE=$(wc -l < current_source_keys.txt)
           REMOVED=0
-          if [ "$TOTAL_SOURCE_KEYS" -gt "$LIMIT" ]; then
-             REMOVED=$((TOTAL_SOURCE_KEYS - LIMIT))
-             # Оставляем только хвост файла (самые последние/новые ключи)
-             tail -n "$LIMIT" new_keys.txt > cleaned_keys.txt
+          if [ "$TOTAL_BEFORE" -gt "$LIMIT" ]; then
+             REMOVED=$((TOTAL_BEFORE - LIMIT))
+             tail -n "$LIMIT" current_source_keys.txt > cleaned_source_keys.txt
           else
-             cp new_keys.txt cleaned_keys.txt
+             cp current_source_keys.txt cleaned_source_keys.txt
           fi
 
-          # 5. Сборка итогового файла подписки
+          # 6. ПОЛНАЯ ПЕРЕЗАПИСЬ README.md (удаление старого мусора)
           TRAFFIC_LINE=$(grep "#subscription-userinfo" README.md | head -n 1 || echo "#subscription-userinfo: upload=0; download=0; total=1125899906842624; expire=3803572800")
           echo "$TRAFFIC_LINE" > README.md
-          echo "#profile-title: ОБХОД БЛОКИРОВОК " >> README.md
+          echo "#profile-title: ОБХОД БЛОКИРОВОК" >> README.md
           echo "#profile-update-interval: 1" >> README.md
           echo "#subscription-update-interval: 1" >> README.md
           echo "#announce:Обновлено! База: $LIMIT рабочих серверов. Удалено старых: $REMOVED" >> README.md
           echo "happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN" >> README.md
           echo "" >> README.md
           
-          # Вставляем твои VIP
+          # VIP ключи
           cat my_own_keys.txt >> README.md
           
-          # Вставляем очищенные ключи из источников с нумерацией
-          IDX=$(( $(wc -l < my_own_keys.txt) + 1 ))
+          # Общие ключи с нумерацией
+          IDX=1
           while IFS= read -r line; do
-             echo "${line} №$IDX" >> README.md
+             CLEAN_LINE=$(echo "$line" | sed 's/ №[0-9]*//g')
+             echo "${CLEAN_LINE} №$IDX" >> README.md
              IDX=$((IDX + 1))
-          done < cleaned_keys.txt
+          done < cleaned_source_keys.txt
 
-          # 6. Отчет в Telegram
-          TOTAL_FINAL=$((IDX - 1))
-          MSG="🚀 *ОБХОД БЛОКИРОВОК*%0A%0A✅ Новых серверов: *$NEW_ADDED*%0A🧹 Удалено старых: *$REMOVED*%0A📊 Всего в списке: *$TOTAL_FINAL*%0A🕒 Время: $(date +'%H:%M')"
+          # 7. Отчет в Telegram
+          TOTAL_FINAL=$(( $(wc -l < my_own_keys.txt) + $(wc -l < cleaned_source_keys.txt) ))
+          MSG="🚀 *ОТЧЕТ ОБНОВЛЕНИЯ*%0A%0A✅ Новых: *$NEW_ADDED*%0A🧹 Удалено лишних: *$REMOVED*%0A📊 Итого в базе: *$TOTAL_FINAL*%0A🕒 Время: $(date +'%H:%M')"
           
           curl -s -X POST "https://api.telegram.org/bot$TG_TOKEN/sendMessage" \
             -d "chat_id=$TG_CHAT_ID" \
@@ -111,6 +101,6 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "Github Action"
           git add README.md
-          git commit -m "Smart Sync: Added $NEW_ADDED, Removed $REMOVED (Limit 222)" || exit 0
+          git commit -m "Source Update: Total Clean Limit 222" || exit 0
           git push origin main
           
