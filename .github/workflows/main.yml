@@ -64,7 +64,7 @@ jobs:
           TRAFFIC_LINE=$(grep "#subscription-userinfo" README.md || echo "#subscription-userinfo: upload=0; download=0; total=1125899906842624; expire=3803572800")
           
           echo "$TRAFFIC_LINE" > new_readme.md
-          echo "#profile-title: ОБХОД БЛОКИРОВОК " >> new_readme.md
+          echo "#profile-title: ОБХОД БЛОКИРОВОК" >> new_readme.md
           # Параметры для отображения "Автообновление - 1 ч."
           echo "#profile-update-interval: 1" >> new_readme.md
           echo "#subscription-update-interval: 1" >> new_readme.md
