@@ -4,38 +4,19 @@
 #subscription-update-interval: 1
 #announce: Если VPN не работает нажмите 🔄 , после ⏱️ и выберите сервер с наименьшим показателем ms!
 happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
-happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
 #profile-subscription-url: https://raw.githubusercontent.com/antivpn-7/Vpn/main/README.md
 #support-url:https://wa.me/79659571323
 #profile-web-page-url:https://wa.me/79659571323
 #profile-icon: https://cdn-icons-png.flaticon.com/512/1356/1356479.png
 #profile-test-url: http://cp.cloudflare.com/generate_204
-vless://e77535c8-f896-4f69-acd0-91484e94957f@nt2.kavkaz-market.tech:443?security=reality&encryption=none&echfq=none&pbk=rh2IgXc0vtXZ3euLtMP8RUlnmBc_4ftYBuL5Z0udk2A&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=max.ru#%F0%9F%87%B3%F0%9F%87%B1+%D0%91%D1%8B%D1%81%D1%82%D1%80%D1%8B%D0%B9+%E2%9A%A1
-vless://aed996ff-eca0-4d4a-b2f3-01362ec4d48d@138.124.26.159:443?security=reality&encryption=none&pbk=GFe2pwkZh7WJbyZuFpFH68G4AOjvfl_xZANcXU2zZio&headerType=none&fp=chrome&type=tcp&sni=yandex.ru#%F0%9F%87%B8%F0%9F%87%AA%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9%20%E2%9A%A1
-vless://aed996ff-eca0-4d4a-b2f3-01362ec4d48d@77.110.103.104:443?security=reality&encryption=none&pbk=ET27w-6nMRvINVTLG8suQqEOT_f2BhrXGCI1USpN9AM&headerType=none&fp=chrome&type=tcp&sni=yandex.ru#%F0%9F%87%B3%F0%9F%87%B1%20%D0%A0%D0%B5%D0%B7%D0%B5%D1%80%D0%B2%20%F0%9F%94%97
-vless://aed996ff-eca0-4d4a-b2f3-01362ec4d48d@147.45.42.81:443?security=reality&encryption=none&pbk=_WD_e6T5Svn6DQx8qO4HGrnqTvsTPImDA__pEBiyaQ0&headerType=none&fp=chrome&type=tcp&sni=yandex.ru&sid=b8960f8a008648c1#%F0%9F%87%AB%F0%9F%87%B7%20%D0%A0%D0%B5%D0%B7%D0%B5%D1%80%D0%B2%20%F0%9F%94%97
+
+vless://e77535c8-f896-4f69-acd0-91484e94957f@nt2.kavkaz-market.tech:443?security=reality&encryption=none&echfq=none&pbk=rh2IgXc0vtXZ3euLtMP8RUlnmBc_4ftYBuL5Z0udk2A&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=max.ru#%F0%9F%87%B3%F0%9F%87%B1+1+%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9%E2%9A%A1
+vless://aed996ff-eca0-4d4a-b2f3-01362ec4d48d@138.124.26.159:443?security=reality&encryption=none&echfq=none&pbk=GFe2pwkZh7WJbyZuFpFH68G4AOjvfl_xZANcXU2zZio&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=vk.com&sid=b8960f8a008648c1#%F0%9F%87%B8%F0%9F%87%AA+1.1+%D0%A0%D0%B5%D0%B7%D0%B5%D1%80%D0%B2+%F0%9F%94%97
+vless://aed996ff-eca0-4d4a-b2f3-01362ec4d48d@77.110.103.104:443?security=reality&encryption=none&echfq=none&pbk=ET27w-6nMRvINVTLG8suQqEOT_f2BhrXGCI1USpN9AM&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=vk.com#%F0%9F%87%B3%F0%9F%87%B1+1.2+%D0%A0%D0%B5%D0%B7%D0%B5%D1%80%D0%B2+%F0%9F%94%97
+vless://aed996ff-eca0-4d4a-b2f3-01362ec4d48d@109.120.133.147:443?security=reality&encryption=none&echfq=none&pbk=GFe2pwkZh7WJbyZuFpFH68G4AOjvfl_xZANcXU2zZio&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=vk.com&sid=b8960f8a008648c1#%F0%9F%87%B8%F0%9F%87%AA+1.3+%D0%A0%D0%B5%D0%B7%D0%B5%D1%80%D0%B2+%F0%9F%94%97
+vless://aed996ff-eca0-4d4a-b2f3-01362ec4d48d@147.45.42.81:443?security=reality&encryption=none&echfq=none&pbk=_WD_e6T5Svn6DQx8qO4HGrnqTvsTPImDA__pEBiyaQ0&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=vk.com#%F0%9F%87%AB%F0%9F%87%B7+1.4+%D0%A0%D0%B5%D0%B7%D0%B5%D1%80%D0%B2+%F0%9F%94%97
+vless://aed996ff-eca0-4d4a-b2f3-01362ec4d48d@89.124.114.182:443?security=reality&encryption=none&echfq=none&pbk=ET27w-6nMRvINVTLG8suQqEOT_f2BhrXGCI1USpN9AM&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=vk.com#%F0%9F%87%B3%F0%9F%87%B1+1.5+%D0%A0%D0%B5%D0%B7%D0%B5%D1%80%D0%B2+%F0%9F%94%97
+vless://aed996ff-eca0-4d4a-b2f3-01362ec4d48d@5.42.112.224:2443?security=reality&encryption=none&echfq=none&pbk=NGXEKZXsnI0yWLAG4Qj6XKSVkDpqN_UaKsW5yJPMBUc&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=vk.com#%F0%9F%87%B7%F0%9F%87%BA+1.6+%D0%A0%D0%B5%D0%B7%D0%B5%D1%80%D0%B2+%F0%9F%94%97
 Vless://a231c089-9065-4525-a226-bb4f4fd487d2@ru.tgflovv.ru:443?security=reality&alpn=http%2F1.1&encryption=none&pbk=dnLLXzjeK60Uc_3ERBlnWIKRGmbXn9b--vn5Yl-LfVI&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=max.ru&sid=6fb05d1f3a#%F0%9F%87%B7%F0%9F%87%BA%20%D0%9E%D0%B1%D1%85%D0%BE%D0%B4%20%D0%91%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BE%D0%BA%20%E2%9A%A1%20%E2%84%961
 vless://a231c089-9065-4525-a226-bb4f4fd487d2@ru.tgflovv.ru:443?security=reality&alpn=http%2F1.1&encryption=none&pbk=dnLLXzjeK60Uc_3ERBlnWIKRGmbXn9b--vn5Yl-LfVI&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=yandex.ru&sid=6fb05d1f3a#%F0%9F%87%B7%F0%9F%87%BA%20%D0%9E%D0%B1%D1%85%D0%BE%D0%B4%20%D0%91%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BE%D0%BA%20%E2%9A%A1%20%E2%84%962
 ss://MjAyMi1ibGFrZTMtYWVzLTI1Ni1nY206T1RoaFpEZ3hNMkZrTWpWbU5EYzFOamxrWldaaFlXRTRObUkyTTJVM05EST06WVRJek1XTXdPRGs1TURZMU5EVXlOV0V5TWpaaVlqUm1OR1prTkRnM1pEST0%3D@85.239.38.170:31675?type=tcp#%F0%9F%87%B7%F0%9F%87%BA%20%D0%9E%D0%B1%D1%85%D0%BE%D0%B4%20%D0%91%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BE%D0%BA%20%E2%9A%A1%20%E2%84%963
