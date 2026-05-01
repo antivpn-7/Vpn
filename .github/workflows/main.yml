@@ -14,7 +14,7 @@ jobs:
       - name: Fetch, Check and Style Keys
         run: |
           # 1. Твой источник
-          SOURCE_URL="https://vpn.tgflovv.ru:8443/free-speed/46c6baae-ed09-4000-bb69-f63f1c100fbf"
+          SOURCE_URL="https://vpn.tgflovv.ru:8443/free-speed/3e6ec68a-567b-47cf-95e9-d0e925a935b5"
 
           # Список флагов (🇸🇴 в приоритете)
           FLAGS=("🇸🇴" "🇸🇴" "🇸🇴" "🇺🇸" "🇩🇪" "🇫🇮" "🇵🇰" "🇳🇱" "🇬🇧" "🇫🇷" "🇰🇿" "🇹🇷" "🇸🇪" "🇦🇹" "🇨🇿")
