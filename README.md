@@ -22,7 +22,8 @@ happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
 #profile-web-page-url:https://wa.me/79659571323
 #profile-icon: https://cdn-icons-png.flaticon.com/512/1356/1356479.png
 #profile-test-url: http://cp.cloudflare.com/generate_204
-vless://e77535c8-f896-4f69-acd0-91484e94957f@nt2.kavkaz-market.tech:443?security=reality&encryption=none&echfq=none&pbk=rh2IgXc0vtXZ3euLtMP8RUlnmBc_4ftYBuL5Z0udk2A&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=max.ru#%F0%9F%87%B3%F0%9F%87%B1+1+%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9%E2%9A%A1
+
+vless://5b1c5027-5bc6-4ee2-b287-001b05fba219@144.31.5.247:443?security=reality&encryption=none&pbk=ZHEMPjSWslk6_qD2JNQzd5enUPz8nY9mYRRuM6NkZmU&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=deepl.com&sid=1a#%F0%9F%87%B5%F0%9F%87%B1+1+%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B9+%E2%9A%A1
 vless://aed996ff-eca0-4d4a-b2f3-01362ec4d48d@138.124.26.159:443?security=reality&encryption=none&echfq=none&pbk=GFe2pwkZh7WJbyZuFpFH68G4AOjvfl_xZANcXU2zZio&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=vk.com&sid=b8960f8a008648c1#%F0%9F%87%B8%F0%9F%87%AA+1.1+%D0%A0%D0%B5%D0%B7%D0%B5%D1%80%D0%B2+%F0%9F%94%97
 vless://aed996ff-eca0-4d4a-b2f3-01362ec4d48d@77.110.103.104:443?security=reality&encryption=none&echfq=none&pbk=ET27w-6nMRvINVTLG8suQqEOT_f2BhrXGCI1USpN9AM&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=vk.com#%F0%9F%87%B3%F0%9F%87%B1+1.2+%D0%A0%D0%B5%D0%B7%D0%B5%D1%80%D0%B2+%F0%9F%94%97
 vless://aed996ff-eca0-4d4a-b2f3-01362ec4d48d@109.120.133.147:443?security=reality&encryption=none&echfq=none&pbk=GFe2pwkZh7WJbyZuFpFH68G4AOjvfl_xZANcXU2zZio&headerType=none&fp=chrome&allowinsecure=0&type=tcp&flow=xtls-rprx-vision&sni=vk.com&sid=b8960f8a008648c1#%F0%9F%87%B8%F0%9F%87%AA+1.3+%D0%A0%D0%B5%D0%B7%D0%B5%D1%80%D0%B2+%F0%9F%94%97
