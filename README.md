@@ -1,11 +1,13 @@
 #subscription-userinfo: upload=1; download=1; total=1; expire=999999999999999
-#profile-title: Удалено 🚨
+#profile-title: НЕ ДОСТУПНО 
 #profile-update-interval: 1
 #subscription-update-interval: 1
-#announce:  Для получения нового ключа напишите владельцу у кого покупали ключ!🚨
+#announce:  ДЛЯ ПОКУПКИ КЛЮЧА НАПИШИТЕ WhatsApp 🟢+79659571323
 #support-url: https://Wa.me/79659571323
 #profile-web-page-url: https://Wa.me/79659571323
 happ://routing/bypass-lan-and-cn?name=Bypass+LAN+and+CN
 
 
-vless://1bb64662-1ed9-450c-8f58-b95abb582cfa@8:3?security=none&encryption=none&type=httpupgrade#%F0%9F%9A%A8+%D0%9D%D0%B0%D0%BF%D0%B8%D1%88%D0%B8%D1%82%D0%B5+%D0%B2+%D1%82%D0%B5%D1%85.%D0%BF%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D1%83
+vmess://eyJhZGQiOiLQkNC00LDQvCDQstC/0L0iLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6InciLCJpZCI6ItC00LvQuyIsIm5ldCI6ImgyIiwicGF0aCI6Ii8iLCJwb3J0IjoiNDQzIiwicHMiOiLwn4e18J+HsNCn0YLQvtCx0Ysg0J/RgNC40L7QsdGA0LXRgdGC0Lgg0L/QvtC00L/QuNGB0LrRgyIsInNjeSI6Inplcm8iLCJzbmkiOiIiLCJ0bHMiOiIiLCJ0eXBlIjoiIiwidiI6IjIifQ==
+vmess://eyJhZGQiOiI4MTgyOCIsImFpZCI6IjAiLCJhbHBuIjoiIiwiZnAiOiIiLCJob3N0IjoicmVuZGVyZXItc3RyZWFtLTEtMzc1Lm1pcnJhLm5vdyIsImlkIjoiODEzIiwibmV0IjoiaDIiLCJwYXRoIjoiL2FwaS92MS9ncHUtc3RyZWFtL3NvY2tldCIsInBvcnQiOiI0NDMiLCJwcyI6IvCfh7Xwn4ew0J3QsNC/0LjRiNC4INCyIPCflL0iLCJzY3kiOiJhdXRvIiwic25pIjoiIiwidGxzIjoiIiwidHlwZSI6IiIsInYiOiIyIn0=
+vmess://eyJhZGQiOiJhZGFtIHZwbiIsImFpZCI6IjAiLCJhbHBuIjoiIiwiZnAiOiIiLCJob3N0IjoicmVuZGVyZXItc3RyZWFtLTEtMzc1Lm1pcnJhLm5vdyIsImlkIjoiOGYyMzVlNmQtMjYzYi00YTIzLTkyNTMtNGZmN2MzZDRhN2EzIiwibmV0IjoicXVpYyIsInBhdGgiOiIvYXBpL3YxL2dwdS1zdHJlYW0vc29ja2V0IiwicG9ydCI6IjQ0MyIsInBzIjoi8J+HtfCfh7Ag8J+foiBXaGF0c0FwcCArNzk2NTk1NzEzMjMiLCJzY3kiOiJhdXRvIiwic25pIjoiIiwidGxzIjoiIiwidHlwZSI6Im5vbmUiLCJ2IjoiMiJ9
